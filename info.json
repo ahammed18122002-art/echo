@@ -43,19 +43,19 @@
       "name": "MD Ahammed",
       "username": "ahammed",
       "email": "mdmh18122002@gmail.com",
-      "specialty": "Security Research",
+      "specialty": "gray hat",
       "country": "Bangladesh",
-      "points": 120,
+      "points": 0,
       "role": "Leader"
     },
     {
       "id": "m-cipher",
-      "name": "CipherFox",
+      "name": "salahuddin",
       "username": "ssalahuddin072",
       "email": "ssalahuddin072@gmail.com",
-      "specialty": "Web Security",
+      "specialty": "red hat",
       "country": "Bangladesh",
-      "points": 85,
+      "points": 0,
       "role": "Member"
     }
   ],
