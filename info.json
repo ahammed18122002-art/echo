@@ -1,0 +1,81 @@
+{
+  "settings": {
+    "meetingUrl": "https://meet.google.com/",
+    "meetingPasscode": "CHANGE-ME-DEMO",
+    "awsClassUrl": "https://ahammed18122002-art.github.io/mr.-g/",
+    "adminEmail": "admin@echo.local",
+    "adminPassword": "ECHO-Admin-ChangeMe-26"
+  },
+  "notices": [
+    {
+      "id": "n-1",
+      "title": "IMPORTANT // READ FIRST",
+      "body": "Submit clear evidence with completed tasks. Points are verified after review."
+    }
+  ],
+  "classes": [
+    {
+      "id": "c-1",
+      "title": "Web Security Fundamentals",
+      "description": "Learn safe web security concepts and HTTP basics.",
+      "url": "https://arena-b66-delta-archive.vercel.app/#overview"
+    }
+  ],
+  "resources": [
+    {
+      "id": "r-1",
+      "title": "Cyber Security Roadmap",
+      "description": "Step by step guide from fundamentals to web security.",
+      "url": ""
+    }
+  ],
+  "tools": [
+    {
+      "id": "tl-1",
+      "title": "Browser DevTools",
+      "description": "Inspect response headers, local storage, and networks.",
+      "url": ""
+    }
+  ],
+  "members": [
+    {
+      "id": "m-lead",
+      "name": "MD Ahammed",
+      "username": "ahammed",
+      "email": "mdmh18122002@gmail.com",
+      "specialty": "Security Research",
+      "country": "Bangladesh",
+      "points": 120,
+      "role": "Leader"
+    },
+    {
+      "id": "m-cipher",
+      "name": "CipherFox",
+      "username": "17122002",
+      "email": "mdmh17122002@gmail.com",
+      "specialty": "Web Security",
+      "country": "Bangladesh",
+      "points": 85,
+      "role": "Member"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t-101",
+      "title": "HTTP Security Header Review",
+      "category": "Web Security",
+      "points": 15,
+      "description": "Inspect security headers on an authorized web system.",
+      "steps": [
+        "Confirm scope",
+        "Check headers with DevTools",
+        "Submit short findings"
+      ],
+      "submissions": []
+    }
+  ],
+  "about": {
+    "title": "ETHICAL CYBER HACKING ORGANIZER",
+    "description": "A customizable learning workspace for tasks, member progress and community resources."
+  }
+}

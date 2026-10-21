@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ECHO | Admin Console</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="admin">
+  <canvas id="rain"></canvas>
+
+  <!-- Admin Login -->
+  <div id="loginScreen" class="login-screen">
+    <form id="loginForm" class="login-card" autocomplete="off">
+      <div class="eyebrow">ADMIN GATE // ECHO</div>
+      <h1 class="login-title">ADMIN<span>_</span></h1>
+      <p class="lede" style="margin-bottom:16px">শুধু অ্যাডমিনদের জন্য</p>
+      <div class="field">
+        <label for="loginEmail">ADMIN EMAIL</label>
+        <input id="loginEmail" type="email" required placeholder="admin@echo.local">
+      </div>
+      <div class="field">
+        <label for="loginPassword">ADMIN PASSWORD</label>
+        <input id="loginPassword" type="password" required placeholder="Enter password">
+      </div>
+      <button class="btn" type="submit" style="width:100%;margin-top:8px">VERIFY &amp; ENTER ↗</button>
+      <p class="login-error" id="loginError"></p>
+      <p style="font-size:12px;margin-top:10px"><a href="index.html" style="color:var(--cyan)">← মূল সাইটে ফিরে যান</a></p>
+    </form>
+  </div>
+
+  <!-- Admin App -->
+  <div id="appContainer" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-name">ECHO</div>
+        <div class="brand-sub">admin console</div>
+      </div>
+      <nav class="nav">
+        <a href="#sec-review">★ Review Queue</a>
+        <a href="#sec-settings">⚙ Settings</a>
+        <a href="#sec-notices">১ Notices</a>
+        <a href="#sec-classes">২ Classes</a>
+        <a href="#sec-resources">৩ Resources</a>
+        <a href="#sec-tasks">৪ Tasks</a>
+        <a href="#sec-members">৫ Members</a>
+        <a href="#sec-tools">৬ Tools</a>
+        <a href="#sec-about">৭ About</a>
+        <a href="index.html">← Main Site</a>
+      </nav>
+      <div class="side-note">
+        <div id="sessionLabel">Checking session...</div>
+        <button class="btn neutral" id="themeBtn" style="width:100%;margin-top:10px">◐ THEME</button>
+        <button class="btn neutral" id="logoutBtn" style="width:100%;margin-top:6px">LOG OUT</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbrand">ADMINISTRATOR CONSOLE</div>
+        <div class="top-actions">
+          <button class="btn" id="topExportBtn">⬇ DOWNLOAD UPDATED INFO.JSON</button>
+        </div>
+      </header>
+
+      <div class="warn-box">
+        এখানকার পরিবর্তন আপনার ব্রাউজারে ড্রাফট হিসেবে সেভ হয়। সাইটে লাইভ করতে <b>info.json ডাউনলোড</b> করে GitHub-এ পুরনো ফাইলের জায়গায় আপলোড করুন।
+      </div>
+
+      <div class="panel" id="sec-review" style="border-color:var(--cyan)">
+        <h2>★ মেম্বার টাস্ক রিপোর্ট ও পয়েন্ট রিভিউ</h2>
+        <p style="font-size:12px;color:var(--muted);margin-top:0">Approve করলে পয়েন্ট যুক্ত হবে (এই ব্রাউজারে জমা হওয়া রিপোর্ট দেখাবে)।</p>
+        <div id="adminReviewQueue"></div>
+      </div>
+
+      <div class="panel" id="sec-settings">
+        <h2>⚙ সেটিংস (Meeting, AWS, Admin Login)</h2>
+        <form id="settingsForm">
+          <div class="grid2">
+            <div class="field"><label>Meeting URL</label><input id="setMeetUrl" type="url"></div>
+            <div class="field"><label>Meeting Passcode</label><input id="setMeetPass"></div>
+            <div class="field"><label>AWS Class URL</label><input id="setAwsUrl" type="url"></div>
+            <div></div>
+            <div class="field"><label>Admin Email</label><input id="setAdminEmail" type="email" required></div>
+            <div class="field"><label>Admin Password</label><input id="setAdminPass" required></div>
+          </div>
+          <button class="btn" type="submit">SAVE SETTINGS</button>
+        </form>
+      </div>
+
+      <div class="panel" id="sec-notices">
+        <h2>১. নোটিশ বোর্ড</h2>
+        <form id="noticeForm">
+          <div class="field"><label>Notice Title</label><input id="noticeTitle" required></div>
+          <div class="field"><label>Notice Text</label><textarea id="noticeBody" required></textarea></div>
+          <button class="btn" type="submit">ADD NOTICE +</button>
+        </form>
+        <div id="adminNoticeList" class="item-list"></div>
+      </div>
+
+      <div class="panel" id="sec-classes">
+        <h2>২. ক্লাসেস</h2>
+        <form id="classForm">
+          <div class="field"><label>Class Title</label><input id="classTitle" required></div>
+          <div class="field"><label>Description</label><textarea id="classDesc" required></textarea></div>
+          <div class="field"><label>Link URL (Optional)</label><input id="classUrl" type="url" placeholder="https://..."></div>
+          <button class="btn" type="submit">ADD CLASS +</button>
+        </form>
+        <div id="adminClassList" class="item-list"></div>
+      </div>
+
+      <div class="panel" id="sec-resources">
+        <h2>৩. রিসোর্সেস</h2>
+        <form id="resourceForm">
+          <div class="field"><label>Resource Title</label><input id="resTitle" required></div>
+          <div class="field"><label>Description</label><textarea id="resDesc" required></textarea></div>
+          <div class="field"><label>Resource URL</label><input id="resUrl" type="url" placeholder="https://..."></div>
+          <button class="btn" type="submit">ADD RESOURCE +</button>
+        </form>
+        <div id="adminResourceList" class="item-list"></div>
+      </div>
+
+      <div class="panel" id="sec-tasks">
+        <h2>৪. টাস্ক ম্যানেজমেন্ট</h2>
+        <form id="adminTaskForm">
+          <div class="field"><label>Task Title</label><input id="admTaskTitle" required></div>
+          <div class="grid2">
+            <div class="field"><label>Category</label>
+              <select id="admTaskCat"><option>Web Security</option><option>AWS / Cloud</option><option>Networking</option><option>OSINT &amp; Research</option><option>Documentation</option></select></div>
+            <div class="field"><label>Points</label><input type="number" id="admTaskPts" value="15" required></div>
+          </div>
+          <div class="field"><label>Description / Scope</label><textarea id="admTaskDesc" required></textarea></div>
+          <div class="field"><label>Checklist Steps (প্রতি লাইনে একটি)</label><textarea id="admTaskSteps" required placeholder="Step 1&#10;Step 2"></textarea></div>
+          <button class="btn" type="submit">PUBLISH TASK +</button>
+        </form>
+        <div id="adminTaskList" class="item-list"></div>
+      </div>
+
+      <div class="panel" id="sec-members">
+        <h2>৫. মেম্বারস</h2>
+        <form id="addMemberForm" class="grid2">
+          <div class="field"><label>Display Name</label><input id="memName" required></div>
+          <div class="field"><label>Username (এটাই Password)</label><input id="memUser" required></div>
+          <div class="field"><label>Email (Login ID)</label><input id="memEmail" type="email" required></div>
+          <div class="field"><label>Specialty</label><input id="memSpec" required></div>
+          <div class="field"><label>Country</label><input id="memCountry" value="Bangladesh" required></div>
+          <div class="field"><label>Role</label><select id="memRole"><option>Member</option><option>Leader</option></select></div>
+          <div style="grid-column:span 2"><button class="btn" type="submit">ADD MEMBER +</button></div>
+        </form>
+        <div id="adminMemberList" class="item-list"></div>
+      </div>
+
+      <div class="panel" id="sec-tools">
+        <h2>৬. টুলস</h2>
+        <form id="toolForm">
+          <div class="field"><label>Tool Title</label><input id="toolTitle" required></div>
+          <div class="field"><label>Description</label><textarea id="toolDesc" required></textarea></div>
+          <div class="field"><label>Link URL (Optional)</label><input id="toolUrl" type="url" placeholder="https://..."></div>
+          <button class="btn" type="submit">ADD TOOL +</button>
+        </form>
+        <div id="adminToolList" class="item-list"></div>
+      </div>
+
+      <div class="panel" id="sec-about">
+        <h2>৭. এবাউট পেজ</h2>
+        <form id="aboutForm">
+          <div class="field"><label>About Title</label><input id="aboutTitle" required></div>
+          <div class="field"><label>Description</label><textarea id="aboutDesc" style="min-height:90px" required></textarea></div>
+          <button class="btn" type="submit">UPDATE ABOUT INFO</button>
+        </form>
+      </div>
+
+      <div class="panel" style="border-color:var(--green);text-align:center;padding:24px">
+        <h3 style="margin:0 0 8px;font-size:18px;color:var(--green)">GitHub-এর জন্য info.json এক্সপোর্ট</h3>
+        <p style="font-size:12px;color:var(--muted);margin:0 0 16px">ডাউনলোড করে আপনার রিপোজিটরির <code>info.json</code> ফাইল রিপ্লেস করুন।</p>
+        <button class="btn" id="bottomExportBtn" style="padding:12px 24px;font-size:13px">⬇ DOWNLOAD UPDATED INFO.JSON</button>
+        <button class="btn danger" id="resetDraftBtn" style="padding:12px 24px;font-size:13px;margin-left:8px">RESET DRAFT</button>
+      </div>
+
+      <div class="footer">ECHO // Admin Console</div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
